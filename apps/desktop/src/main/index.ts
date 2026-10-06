@@ -23,8 +23,14 @@ app.whenReady().then(async () => {
     return result.canceled ? null : (result.filePaths[0] ?? null);
   });
   const window = new BrowserWindow({
-    width: 1000,
-    height: 700,
+    width: 1360,
+    height: 860,
+    minWidth: 980,
+    minHeight: 620,
+    title: "agent-hub",
+    backgroundColor: "#0e1014",
+    show: false,
+    autoHideMenuBar: true,
     webPreferences: {
       preload: join(currentDir, "preload.cjs"),
       contextIsolation: true,
@@ -32,6 +38,7 @@ app.whenReady().then(async () => {
       sandbox: true,
     },
   });
+  window.once("ready-to-show", () => window.show());
   await window.loadFile(resolve(currentDir, "../renderer/index.html"));
 });
 
