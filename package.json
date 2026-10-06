@@ -16,14 +16,18 @@
     "build": "npm run build --workspaces --if-present",
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
-    "test": "npm run test --workspaces --if-present",
+    "test": "npm run test --workspace @agent-hub/core && npm run test --workspace @agent-hub/daemon",
     "typecheck": "npm run typecheck --workspaces --if-present",
-    "dev:daemon": "npm run dev --workspace @agent-hub/daemon",
-    "dev:desktop": "npm run dev --workspace @agent-hub/desktop"
+    "dev:daemon": "npm run build --workspace @agent-hub/core && npm run build --workspace @agent-hub/daemon && node packages/daemon/dist/index.js",
+    "dev:desktop": "npm run build && npm run dev --workspace @agent-hub/desktop"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.13",
     "@types/node": "^22.10.0",
     "typescript": "^5.9.2"
+  },
+  "allowScripts": {
+    "better-sqlite3@12.11.1": true,
+    "esbuild@0.25.12": true
   }
 }
