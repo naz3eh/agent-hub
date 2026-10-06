@@ -1,0 +1,29 @@
+{
+  "name": "agent-hub-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A local desktop inbox for coding agents",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "test": "npm run test --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "dev:daemon": "npm run dev --workspace @agent-hub/daemon",
+    "dev:desktop": "npm run dev --workspace @agent-hub/desktop"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.13",
+    "@types/node": "^22.10.0",
+    "typescript": "^5.9.2"
+  }
+}
